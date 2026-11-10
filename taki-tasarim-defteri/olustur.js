@@ -528,9 +528,9 @@ const BOLUMLER = [
   { ad: 'Cevşen Set Takımı', ek: 'ders',
     aciklama: 'Cevşen motifli kolye, küpe ve bileklikten oluşan uyumlu set. Parçaların oranlarını ve ortak renk düzenini birlikte planlayın.',
     malz: ['Cevşen parçası', 'Zincir', 'Kapama', MALZ.karga, MALZ.kivirma, MALZ.keski] },
-  { ad: 'Nazar ve Taş Bezeme', ek: 'ders',
-    aciklama: 'Nazar boncukları ve renkli taşlarla yapılan süsleme. Taşlar boncuk ya da dikiş iğnesiyle zemine veya diziye tutturulur.',
-    malz: ['Nazar boncuğu', 'Taşlar', MALZ.dikis, MALZ.boncukIgne, 'İplik', MALZ.makas] },
+  { ad: 'Nazo ve Taş Bezeme', ek: 'ders',
+    aciklama: 'Nazo ve renkli taşlarla yapılan bezeme. Taşlar boncuk ya da dikiş iğnesiyle zemine veya diziye tutturulur; eğitmenin gösterdiği yapım sırasını aşağıya not edin.',
+    malz: ['Nazo', 'Taşlar', MALZ.dikis, MALZ.boncukIgne, 'İplik', MALZ.makas] },
 ];
 const ON_SAYFA = 11, BOLUM_SAYFA = 4;
 const bolumSayfasi = (i) => ON_SAYFA + 1 + i * BOLUM_SAYFA;
@@ -554,10 +554,10 @@ const temelMalzemeler = () => {
     ['Keski', 'Çivi, tel ve zinciri temiz şekilde kesme.'],
     ['Kıvırma pensesi', 'Yuvarlak uçlu; çiviyi kıvırıp düzgün ilmek yapma.', true],
     ['Çalışma bezi', 'Boncukların yuvarlanmasını önler, gözü yormaz.'],
-    ['Dikiş iğnesi', 'Kalın delikli boncuklar, nazar ve taş bezeme dikişi.'],
+    ['Dikiş iğnesi', 'Kalın delikli boncuklar, nazo ve taş bezeme dikişi.'],
     ['Boncuk iğnesi', 'İnce ve uzun; Miyuki ve küçük delikli boncuklar için.'],
   ];
-  const ek = ['Misina', 'Boncuk ipliği', 'Miyuki boncuk (11/0 · 15/0)', 'İğne uç / çivi', 'Halka (jump ring)', 'Kapama', 'Zincir', 'Nazar boncuğu', 'Mineli parçalar', 'Cevşen parçası', 'Şeffaf yapıştırıcı', 'Bölmeli boncuk kutusu'];
+  const ek = ['Misina', 'Boncuk ipliği', 'Miyuki boncuk (11/0 · 15/0)', 'İğne uç / çivi', 'Halka (jump ring)', 'Kapama', 'Zincir', 'Nazo', 'Mineli parçalar', 'Cevşen parçası', 'Şeffaf yapıştırıcı', 'Bölmeli boncuk kutusu'];
   return sayfa(`${baslik('Kurs Programı', 'Temel Malzemeler')}
     <p class="not" style="text-align:center;margin-top:-3mm">★ Eğitmenin özellikle işaretlediği aletler</p>
     <div class="malz-kartlar">${ana.map(([a, b, y]) => `<div class="${y ? 'yildiz' : ''}"><div class="mk-ust"><span class="kutu"></span><b>${a}${y ? ' <i>★</i>' : ''}</b></div><p>${b}</p>${cizgi('Nereden / fiyat')}</div>`).join('')}</div>

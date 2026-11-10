@@ -21,7 +21,7 @@ Kolye dizilim planı · Renk paleti
 7. Dönen Mineli — s. 36
 8. Şeker Topu Dönence — s. 40
 9. Cevşen Set Takımı — s. 44
-10. Nazar ve Taş Bezeme — s. 48
+10. Nazo ve Taş Bezeme — s. 48
 
 ## Son bölüm (s. 52–56)
 İlham panosu · Envanter · Tedarikçiler & aletler · Serbest çizim · Arka kapak
