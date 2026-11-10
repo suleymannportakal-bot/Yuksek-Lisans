@@ -17,7 +17,7 @@ Kolye dizilim planı · Renk paleti
 3. Misinalı Modeller — s. 20 (dizilim şeritleri)
 4. Miyuki · Peyote — s. 24 (peyote ızgarası)
 5. Miyuki · Tuğla (Brick) — s. 28 (tuğla ızgarası)
-6. Miyuki · Ndebele (Balıksırtı) — s. 32 (balıksırtı ızgarası)
+6. Miyuki · Üçgen Nuska — s. 32 (üçgen nuska ızgarası)
 7. Dönen Mineli — s. 36
 8. Şeker Topu Dönence — s. 40
 9. Cevşen Set Takımı — s. 44

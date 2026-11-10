@@ -336,16 +336,20 @@ const izgaraSvg = (tur) => {
     const w = 4.2, h = 3.2; const nx = Math.floor((W - w / 2) / w), ny = Math.floor(H / h);
     for (let y = 0; y < ny; y++) for (let x = 0; x < nx; x++) s += `<rect x="${x * w + (y % 2 ? w / 2 : 0) + .2}" y="${y * h + .2}" width="${w - .4}" height="${h - .4}" rx=".6" ${st}/>`;
   }
-  if (tur === 'ndebele') {
-    const w = 2.9, h = 4.0, cift = 8.4, dy = 3.3; const nc = Math.floor(W / cift), ny = Math.floor((H - 4) / dy);
-    for (let c = 0; c < nc; c++) for (let y = 0; y < ny; y++) for (const [dx, a] of [[-1.8, -28], [1.8, 28]]) {
-      const x = c * cift + cift / 2 + dx, yy = y * dy + 2.6;
-      s += `<rect x="${(x - w / 2).toFixed(2)}" y="${(yy - h / 2).toFixed(2)}" width="${w}" height="${h}" rx=".7" transform="rotate(${a} ${x.toFixed(2)} ${yy.toFixed(2)})" ${st}/>`;
+  if (tur === 'ucgen') {
+    // Üçgen şablonlar: her sırada bir boncuk azalan tuğla dizilimi (2 sütun × 3 sıra)
+    const w = 4.2, h = 3.2, N = 20, genis = N * w, yuk = N * h;
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 2; c++) {
+      const ox = c * (W / 2) + (W / 2 - genis) / 2, oy = r * (H / 3) + (H / 3 - yuk) / 2, asagi = r % 2 === 1;
+      for (let k = 0; k < N; k++) {
+        const adet = asagi ? N - k : k + 1, sx = ox + (genis - adet * w) / 2;
+        for (let x = 0; x < adet; x++) s += `<rect x="${(sx + x * w + .2).toFixed(2)}" y="${(oy + k * h + .2).toFixed(2)}" width="${w - .4}" height="${h - .4}" rx=".6" ${st}/>`;
+      }
     }
   }
   return `<svg class="izgara" viewBox="0 0 ${W} ${H}" width="${W}mm" height="${H}mm">${s}</svg>`;
 };
-const desenAdlari = { kare: 'Kare örgü / loom ızgarası', peyote: 'Peyote ızgarası', brick: 'Tuğla (brick) ızgarası', ndebele: 'Ndebele / balıksırtı ızgarası' };
+const desenAdlari = { kare: 'Kare örgü / loom ızgarası', peyote: 'Peyote ızgarası', brick: 'Tuğla (brick) ızgarası', ucgen: 'Üçgen nuska ızgarası' };
 const desen = (tur) => sayfa(`${desenUst(desenAdlari[tur])}${izgaraSvg(tur)}`, { sinif: 'desen' });
 
 const seritler = () => {
@@ -516,8 +520,8 @@ const BOLUMLER = [
   { ad: 'Tuğla (Brick)', ust: 'Miyuki Yapım Teknikleri · 2', ek: 'brick',
     aciklama: 'Her boncuğun alt sıradaki ipliğe tutturulduğu, tuğla duvar gibi yatay kaydırmalı örgü. Küpe, üçgen ve yelpaze formlar için uygundur.',
     malz: ['Miyuki boncuk', 'Boncuk ipliği', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
-  { ad: 'Ndebele (Balıksırtı)', ust: 'Miyuki Yapım Teknikleri · 3', ek: 'ndebele',
-    aciklama: 'Boncukların ikişer ikişer V biçiminde dizildiği, balıksırtı dokulu akışkan örgü. Halat kolye ve esnek bantlar için kullanılır.',
+  { ad: 'Üçgen Nuska', ust: 'Miyuki Yapım Teknikleri · 3', ek: 'ucgen',
+    aciklama: 'Miyuki boncuklarla üçgen formda örülen nuska modeli. Her sırada boncuk sayısı bir azalarak üçgen oluşur; sıra başına boncuk sayısını ve eğitmenin gösterdiği yapım sırasını not edin.',
     malz: ['Miyuki boncuk', 'Boncuk ipliği', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
   { ad: 'Dönen Mineli', ek: 'ders',
     aciklama: 'Mineli (renkli emaye) parçalarla yapılan dönen model. Eğitmenin gösterdiği yapım sırasını, parça ve boncuk dizilimini aşağıya not edin.',
@@ -584,7 +588,7 @@ const bolumAcilis = (b, i) => sayfa(`
 
 const ekSayfa = (b) => {
   if (b.ek === 'serit') return seritler();
-  if (['peyote', 'brick', 'ndebele'].includes(b.ek)) return desen(b.ek);
+  if (['peyote', 'brick', 'ucgen'].includes(b.ek)) return desen(b.ek);
   return ders(b.ad);
 };
 
