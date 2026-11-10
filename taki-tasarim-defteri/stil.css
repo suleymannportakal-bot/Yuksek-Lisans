@@ -222,3 +222,26 @@ h3 small { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 7.5pt; 
 .dizi-serit svg { flex: 1; }
 .tasarim .gorunumler { height: 36mm; }
 .tasarim .teknik .alan { min-height: 6.9mm; }
+
+/* --- kurs müfredatı sürümü --- */
+.alan i.dolu { font-style: normal; font-family: 'Cormorant Garamond', serif; font-size: 12pt; color: var(--murekkep); height: auto; padding: 0 1mm .3mm; }
+.teknik-etiket { position: absolute; top: 9mm; right: 15mm; font-size: 6.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--altin); }
+.plan-tablo td { height: 9.4mm; font-size: 10pt; }
+.plan-tablo td b { font-family: 'Cormorant Garamond', serif; font-size: 13pt; font-weight: 500; }
+.plan-tablo td em { font-style: normal; font-size: 7pt; color: var(--altin); letter-spacing: .12em; text-transform: uppercase; }
+.malz-kartlar { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 6mm; }
+.malz-kartlar > div { border: .25mm solid var(--cizgi); border-radius: 1.5mm; padding: 3mm 3.5mm 1mm; }
+.malz-kartlar > div.yildiz { border-color: var(--altin); background: #fcf8f1; }
+.mk-ust { display: flex; align-items: center; }
+.mk-ust b { font-family: 'Cormorant Garamond', serif; font-size: 14pt; font-weight: 600; }
+.mk-ust b i { font-style: normal; color: var(--altin); }
+.malz-kartlar p { font-size: 8pt; color: var(--soluk); margin: 1mm 0 0 4.3mm; line-height: 1.4; min-height: 7mm; }
+.bolum-ust { display: flex; align-items: center; gap: 8mm; margin: 2mm 0 4mm; }
+.buyuk-rozet { flex: 0 0 22mm; height: 22mm; margin: 4mm 4mm 4mm 4mm; }
+.buyuk-rozet b { font-size: 22pt; }
+.bolum-ad { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 30pt; line-height: 1.1; margin-top: 1mm; }
+.bolum-aciklama { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12.5pt; line-height: 1.45; color: #4d5a57; border-left: .6mm solid var(--altin); padding: 1mm 0 1mm 4mm; }
+.alet-liste.tek { grid-template-columns: 1fr; }
+.alet-liste.tek div { height: 6.4mm; }
+.bolum .adimlar { gap: 2.5mm 6mm; }
+.bolum .cizim-alani.mini { height: 30mm; }

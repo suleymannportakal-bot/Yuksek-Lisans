@@ -23,6 +23,7 @@ const baslik = (ust, ana) => `
     <h2>${ana}</h2>
     <div class="susleme">${susleme()}</div>
   </header>`;
+const dolu = (etiket, deger, gen = '') => deger ? `<div class="alan" style="${gen}"><span>${etiket}</span><i class="dolu">${deger}</i></div>` : cizgi(etiket, gen);
 const cizgi = (etiket, gen = '') => `<div class="alan" style="${gen}"><span>${etiket}</span><i></i></div>`;
 const satirlar = (n, cls = '') => `<div class="satirlar ${cls}">${'<div></div>'.repeat(n)}</div>`;
 const tablo = (basliklar, satirlar_, cls = 'kucuk') => `<table class="tablo ${cls}"><thead><tr>${basliklar.map(b => Array.isArray(b) ? `<th style="width:${b[1]}">${b[0]}</th>` : `<th>${b}</th>`).join('')}</tr></thead><tbody>${satirlar_.map(r => `<tr>${r.map(h => `<td>${h}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
@@ -246,18 +247,18 @@ const referansIp = () => {
     ['İğne uç (kafa / göz)', 'Küpe sallantısı yapımı'], ['Küpe kancası', 'Kanca, halka, vida'],
     ['Boncuk kapağı', 'Boncuğu süsler'], ['Ara boncuk / ayırıcı', 'Deseni nefeslendirir'],
   ];
-  const teknikler = [
-    ['Dizme', 'tek ya da çok sıralı'], ['Peyote', 'tuğla gibi kayan sıralar'], ['Brick', 'yatay kaydırmalı örme'],
-    ['Loom / kare örgü', 'tezgâhta ızgara desen'], ['Ladder', 'merdiven başlangıç sırası'], ['Netting', 'ağ örgü'],
-    ['Spiral rope', 'sarmal ip'], ['Kumihimo', 'diskle örgü kordon'], ['Makrome', 'düğüm örgü'], ['Tel sarma', 'wire wrapping'],
+  const bitisler = [
+    ['Çift düğüm', 'misina ve elastikte temel bitiş'], ['Cerrah düğümü', 'kaymayan, sağlam düğüm'],
+    ['Çakmakla eritme', 'misina ucunu hafifçe eritip sabitleme'], ['Geri geçirme', 'ipi birkaç boncuktan geri geçirip gizleme'],
+    ['Yapıştırıcı', 'düğüme bir damla şeffaf yapıştırıcı'], ['Sıkıştırma boncuğu', 'çelik telde kapama bağlantısı'],
   ];
-  return sayfa(`${baslik('Başvuru · 4', 'İp, Tel, Kapama & Teknikler')}
+  return sayfa(`${baslik('Başvuru · 4', 'İp, Misina & Kapamalar')}
     <h3>İp & tel rehberi</h3>
     ${tablo([['Tür', '52mm'], ['Kalınlık', '30mm'], 'Ne için?'], ipler)}
     <h3>Kapamalar & bağlantı parçaları</h3>
     <div class="kart-izgara">${kapamalar.map(([a, b]) => `<div><b>${a}</b>${b}</div>`).join('')}</div>
-    <h3>Temel teknikler <small>— öğrendiklerimi işaretliyorum</small></h3>
-    <div class="alet-liste">${teknikler.map(([a, b]) => `<div><span class="kutu"></span><b class="tk">${a}</b><em>${b}</em></div>`).join('')}</div>`);
+    <h3>Düğüm & bitiş yöntemleri <small>— öğrendiklerimi işaretliyorum</small></h3>
+    <div class="alet-liste">${bitisler.map(([a, b]) => `<div><span class="kutu"></span><b class="tk">${a}</b><em>${b}</em></div>`).join('')}</div>`);
 };
 
 const sablonlar = () => {
@@ -335,9 +336,16 @@ const izgaraSvg = (tur) => {
     const w = 4.2, h = 3.2; const nx = Math.floor((W - w / 2) / w), ny = Math.floor(H / h);
     for (let y = 0; y < ny; y++) for (let x = 0; x < nx; x++) s += `<rect x="${x * w + (y % 2 ? w / 2 : 0) + .2}" y="${y * h + .2}" width="${w - .4}" height="${h - .4}" rx=".6" ${st}/>`;
   }
+  if (tur === 'ndebele') {
+    const w = 2.9, h = 4.0, cift = 8.4, dy = 3.3; const nc = Math.floor(W / cift), ny = Math.floor((H - 4) / dy);
+    for (let c = 0; c < nc; c++) for (let y = 0; y < ny; y++) for (const [dx, a] of [[-1.8, -28], [1.8, 28]]) {
+      const x = c * cift + cift / 2 + dx, yy = y * dy + 2.6;
+      s += `<rect x="${(x - w / 2).toFixed(2)}" y="${(yy - h / 2).toFixed(2)}" width="${w}" height="${h}" rx=".7" transform="rotate(${a} ${x.toFixed(2)} ${yy.toFixed(2)})" ${st}/>`;
+    }
+  }
   return `<svg class="izgara" viewBox="0 0 ${W} ${H}" width="${W}mm" height="${H}mm">${s}</svg>`;
 };
-const desenAdlari = { kare: 'Kare örgü / loom ızgarası', peyote: 'Peyote ızgarası', brick: 'Brick stitch ızgarası' };
+const desenAdlari = { kare: 'Kare örgü / loom ızgarası', peyote: 'Peyote ızgarası', brick: 'Tuğla (brick) ızgarası', ndebele: 'Ndebele / balıksırtı ızgarası' };
 const desen = (tur) => sayfa(`${desenUst(desenAdlari[tur])}${izgaraSvg(tur)}`, { sinif: 'desen' });
 
 const seritler = () => {
@@ -404,7 +412,7 @@ const tedarik = () => {
 };
 
 let tasarimNo = 0;
-const tasarim = () => {
+const tasarim = (teknik = '') => {
   tasarimNo++;
   const turler = ['Kolye', 'Bileklik', 'Küpe', 'Yüzük', 'Halhal', 'Set', 'Diğer'];
   let malz = '';
@@ -413,7 +421,7 @@ const tasarim = () => {
   const serit = Array.from({ length: n }, (_, i) => `<circle cx="${i * ar + d / 2 + .3}" cy="${d / 2 + .3}" r="${d / 2}" fill="none" stroke="#bfb4a3" stroke-width=".18"/>`).join('');
   return sayfa(`
     <div class="tasarim-ust">
-      <div class="no-rozet"><small>Tasarım</small><b>${String(tasarimNo).padStart(2, '0')}</b></div>
+      <div class="no-rozet"><small>Tasarım</small><b>${String(tasarimNo).padStart(2, '0')}</b></div>${teknik ? `<div class="teknik-etiket">${teknik}</div>` : ''}
       <div class="tasarim-alanlar">
         <div class="sira">${cizgi('Proje adı', 'flex:2.2')}${cizgi('Tarih', 'flex:1')}</div>
         <div class="turler">${turler.map(t => `<span><i class="kutu"></i>${t}</span>`).join('')}</div>
@@ -435,7 +443,7 @@ const tasarim = () => {
         </table>
       </div>
       <div class="teknik">
-        ${cizgi('İp / tel')}${cizgi('Kapama')}${cizgi('Teknik')}
+        ${cizgi('İp / tel')}${cizgi('Kapama')}${dolu('Teknik', teknik)}
         <div class="sira">${cizgi('Uzunluk', 'flex:1')}${cizgi('Boncuk adedi', 'flex:1')}</div>
         <div class="sira">${cizgi('Süre', 'flex:1')}${cizgi('Satış fiyatı', 'flex:1')}</div>
         <div class="degerlendirme"><span>Sonuç</span>${'<i>☆</i>'.repeat(5)}<span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
@@ -444,13 +452,13 @@ const tasarim = () => {
 };
 
 let dersNo = 0;
-const ders = () => {
+const ders = (konu = '') => {
   dersNo++;
   return sayfa(`
     <div class="ders-ust">
       <div class="no-rozet"><small>Ders</small><b>${String(dersNo).padStart(2, '0')}</b></div>
       <div class="tasarim-alanlar">
-        <div class="sira">${cizgi('Konu / teknik', 'flex:2.2')}${cizgi('Tarih', 'flex:1')}</div>
+        <div class="sira">${dolu('Konu / teknik', konu, 'flex:2.2')}${cizgi('Tarih', 'flex:1')}</div>
         <div class="sira">${cizgi('Kullanılan boncuk & aletler', 'flex:1')}</div>
       </div>
     </div>
@@ -487,11 +495,104 @@ const arkaKapak = () => sayfa(`
     <div class="kapak-yil">Boncuk Takı Tasarım Defteri</div>
   </div>`, { sinif: 'kapak', numarasiz: true });
 
-// ---------- düzen (48 sayfa) ----------
-const govde = [kapak(), kimlik(), dizin(), referansBoyut(), referansUzunluk(), referansSekil(), referansIp(), sablonlar(),
-  dizilimPlani(), seritler(), desen('kare'), desen('peyote'), desen('brick'), palet(), ilham(), envanter(), tedarik()];
-const bolumSonu = [() => teknikKarti(), () => desen('peyote'), () => serbest(), () => desen('kare'), () => desen('brick')];
-for (let h = 0; h < 5; h++) govde.push(ders(), tasarim(), tasarim(), tasarim(), tasarim(), bolumSonu[h]());
+// ---------- kurs müfredatı (tahtadaki plan) ----------
+const MALZ = {
+  makas: 'Makas', cakmak: 'Çakmak', karga: 'Kargaburun', keski: 'Keski', kivirma: 'Kıvırma pensesi',
+  bez: 'Çalışma bezi', dikis: 'Dikiş iğnesi', boncukIgne: 'Boncuk iğnesi',
+};
+const BOLUMLER = [
+  { ad: 'Hapishane İşi', ek: 'ders',
+    aciklama: 'Geleneksel Türk boncuk işçiliği. Adını cezaevlerinde yapılmasından alır; renkli boncuklar misina ya da iple sık ve sağlam bir örgüyle işlenir. Tespih püskülü, anahtarlık, kolye ucu ve küçük figürlerde kullanılır.',
+    malz: ['Misina', 'Renkli boncuk', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
+  { ad: 'Çivi Kıvırma Teknikleri', ek: 'ders',
+    aciklama: 'Boncuğu iğne uca (çiviye) dizip ucunu kıvırma pensesiyle ilmek hâline getirme tekniği. Basit ilmek ve sarmalı ilmek ile küpe sallantıları, tespih zinciri ve bağlantı parçaları yapılır.',
+    malz: ['İğne uç / çivi', 'Halka', 'Boncuk', MALZ.karga, MALZ.kivirma, MALZ.keski] },
+  { ad: 'Misinalı Modeller', ek: 'serit',
+    aciklama: 'Boncukların misinaya dizilip çapraz geçişlerle şekillendirildiği modeller. Uçlar düğümlenir, fazlası kesilir ve çakmakla hafifçe eritilerek sabitlenir.',
+    malz: ['Misina', 'Boncuk', MALZ.makas, MALZ.cakmak, MALZ.bez, 'Kapama'] },
+  { ad: 'Peyote', ust: 'Miyuki Yapım Teknikleri · 1', ek: 'peyote',
+    aciklama: 'Miyuki boncukların yarım boncuk kaydırılarak dikey sıralarla örüldüğü teknik. Desenli bileklik bantları, yüzükler ve kılıflar için idealdir.',
+    malz: ['Miyuki boncuk', 'Boncuk ipliği', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
+  { ad: 'Tuğla (Brick)', ust: 'Miyuki Yapım Teknikleri · 2', ek: 'brick',
+    aciklama: 'Her boncuğun alt sıradaki ipliğe tutturulduğu, tuğla duvar gibi yatay kaydırmalı örgü. Küpe, üçgen ve yelpaze formlar için uygundur.',
+    malz: ['Miyuki boncuk', 'Boncuk ipliği', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
+  { ad: 'Ndebele (Balıksırtı)', ust: 'Miyuki Yapım Teknikleri · 3', ek: 'ndebele',
+    aciklama: 'Boncukların ikişer ikişer V biçiminde dizildiği, balıksırtı dokulu akışkan örgü. Halat kolye ve esnek bantlar için kullanılır.',
+    malz: ['Miyuki boncuk', 'Boncuk ipliği', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
+  { ad: 'Dönen Mineli', ek: 'ders',
+    aciklama: 'Mineli (renkli emaye) parçalarla yapılan dönen model. Eğitmenin gösterdiği yapım sırasını, parça ve boncuk dizilimini aşağıya not edin.',
+    malz: ['Mineli parça', 'Boncuk', 'Halka', MALZ.karga, MALZ.kivirma, MALZ.keski] },
+  { ad: 'Şeker Topu Dönence', ek: 'ders',
+    aciklama: 'Küçük boncuklarla örülen şeker topu motifleriyle yapılan dönence modeli. Bir topta kaç boncuk kullanıldığını ve geçiş sırasını not edin.',
+    malz: ['Boncuk', 'Misina / iplik', MALZ.boncukIgne, MALZ.makas, MALZ.cakmak, MALZ.bez] },
+  { ad: 'Cevşen Set Takımı', ek: 'ders',
+    aciklama: 'Cevşen motifli kolye, küpe ve bileklikten oluşan uyumlu set. Parçaların oranlarını ve ortak renk düzenini birlikte planlayın.',
+    malz: ['Cevşen parçası', 'Zincir', 'Kapama', MALZ.karga, MALZ.kivirma, MALZ.keski] },
+  { ad: 'Nazar ve Taş Bezeme', ek: 'ders',
+    aciklama: 'Nazar boncukları ve renkli taşlarla yapılan süsleme. Taşlar boncuk ya da dikiş iğnesiyle zemine veya diziye tutturulur.',
+    malz: ['Nazar boncuğu', 'Taşlar', MALZ.dikis, MALZ.boncukIgne, 'İplik', MALZ.makas] },
+];
+const ON_SAYFA = 11, BOLUM_SAYFA = 4;
+const bolumSayfasi = (i) => ON_SAYFA + 1 + i * BOLUM_SAYFA;
+
+const kursPlani = () => {
+  const satir = BOLUMLER.map((b, i) => `<tr><td>${i + 1}</td><td><b>${b.ad}</b>${b.ust ? `<em> · Miyuki</em>` : ''}</td><td></td><td>${bolumSayfasi(i)}</td><td class="durum">○ ○ ○</td></tr>`).join('');
+  return sayfa(`${baslik('Kurs Programı', 'Temel Teknikler')}
+    <table class="tablo dizin-tablo plan-tablo">
+      <thead><tr><th style="width:9mm">No</th><th>Teknik</th><th style="width:30mm">Ders tarihi</th><th style="width:15mm">Sayfa</th><th style="width:28mm">Öğrendim · Denedim · Ustalaştım</th></tr></thead>
+      <tbody>${satir}</tbody>
+    </table>
+    <h3>Kurs boyunca hedeflerim</h3>${satirlar(4)}
+    <h3>Eğitmenin genel önerileri</h3>${satirlar(5)}`);
+};
+
+const temelMalzemeler = () => {
+  const ana = [
+    ['Makas', 'Misina ve ip kesimi; ucu sivri küçük makas tercih edin.'],
+    ['Çakmak', 'Misina ve ip uçlarını hafifçe eritip düğümü sabitlemek için.'],
+    ['Kargaburun', 'Tutma, halka açıp kapama, çivi ve teli bükme.', true],
+    ['Keski', 'Çivi, tel ve zinciri temiz şekilde kesme.'],
+    ['Kıvırma pensesi', 'Yuvarlak uçlu; çiviyi kıvırıp düzgün ilmek yapma.', true],
+    ['Çalışma bezi', 'Boncukların yuvarlanmasını önler, gözü yormaz.'],
+    ['Dikiş iğnesi', 'Kalın delikli boncuklar, nazar ve taş bezeme dikişi.'],
+    ['Boncuk iğnesi', 'İnce ve uzun; Miyuki ve küçük delikli boncuklar için.'],
+  ];
+  const ek = ['Misina', 'Boncuk ipliği', 'Miyuki boncuk (11/0 · 15/0)', 'İğne uç / çivi', 'Halka (jump ring)', 'Kapama', 'Zincir', 'Nazar boncuğu', 'Mineli parçalar', 'Cevşen parçası', 'Şeffaf yapıştırıcı', 'Bölmeli boncuk kutusu'];
+  return sayfa(`${baslik('Kurs Programı', 'Temel Malzemeler')}
+    <p class="not" style="text-align:center;margin-top:-3mm">★ Eğitmenin özellikle işaretlediği aletler</p>
+    <div class="malz-kartlar">${ana.map(([a, b, y]) => `<div class="${y ? 'yildiz' : ''}"><div class="mk-ust"><span class="kutu"></span><b>${a}${y ? ' <i>★</i>' : ''}</b></div><p>${b}</p>${cizgi('Nereden / fiyat')}</div>`).join('')}</div>
+    <h3>Ek malzemeler <small>— derslere göre gerekenler</small></h3>
+    <div class="alet-liste">${ek.map(a => `<div><span class="kutu"></span>${a}</div>`).join('')}${'<div><span class="kutu"></span><i></i></div>'.repeat(2)}</div>`);
+};
+
+const bolumAcilis = (b, i) => sayfa(`
+  <div class="bolum-ust">
+    <div class="no-rozet buyuk-rozet"><small>Bölüm</small><b>${String(i + 1).padStart(2, '0')}</b></div>
+    <div><div class="ust">${b.ust || 'Temel Teknik'}</div><h2 class="bolum-ad">${b.ad}</h2></div>
+  </div>
+  <p class="bolum-aciklama">${b.aciklama}</p>
+  <div class="iki-kolon">
+    <div><h3>Bu bölümün malzemeleri</h3><div class="alet-liste tek">${b.malz.map(m => `<div><span class="kutu"></span>${m}</div>`).join('')}<div><span class="kutu"></span><i></i></div></div></div>
+    <div>${cizgi('Ders tarihi')}${cizgi('Zorluk  ○ ○ ○ ○ ○')}<div class="cizim-alani" style="height:41mm;margin-top:2mm"><span class="kose">Örnek / sonuç</span></div></div>
+  </div>
+  <h3>Adım adım</h3>
+  <div class="adimlar">${Array.from({ length: 6 }, (_, k) => `<div class="adim"><b>${k + 1}</b><div class="cizim-alani mini"></div><div>${satirlar(5)}</div></div>`).join('')}</div>
+  <div class="iki-kolon">
+    <div><h3>Eğitmen ipuçları</h3>${satirlar(4)}</div>
+    <div><h3>Hatalarım & çözümler</h3>${satirlar(4)}</div>
+  </div>`, { sinif: 'bolum' });
+
+const ekSayfa = (b) => {
+  if (b.ek === 'serit') return seritler();
+  if (['peyote', 'brick', 'ndebele'].includes(b.ek)) return desen(b.ek);
+  return ders(b.ad);
+};
+
+// ---------- düzen (56 sayfa) ----------
+const govde = [kapak(), kimlik(), kursPlani(), temelMalzemeler(), dizin(), referansBoyut(), referansUzunluk(), referansIp(), sablonlar(), dizilimPlani(), palet()];
+if (sayfaNo !== ON_SAYFA) throw new Error('Ön sayfa sayısı ' + sayfaNo);
+BOLUMLER.forEach((b, i) => govde.push(bolumAcilis(b, i), tasarim(b.ad), tasarim(b.ad), ekSayfa(b)));
+govde.push(ilham(), envanter(), tedarik(), serbest());
 govde.push(arkaKapak());
 
 const css = fs.readFileSync(path.join(__dirname, 'stil.css'), 'utf8');
