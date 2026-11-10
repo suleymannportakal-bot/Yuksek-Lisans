@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="tr"><head><meta charset="utf-8"/>
+<title>Takı Tasarım Defteri</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>:root {
+  --murekkep: #2b3a37;
+  --altin: #b08d57;
+  --altin-acik: #d4b36f;
+  --cizgi: #d6cec2;
+  --soluk: #8a7f70;
+  --nokta: #c9bfb0;
+  --zemin: #ffffff;
+  --kapak: #1f3b36;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #e9e4dc; }
+body {
+  font-family: 'Jost', 'DejaVu Sans', sans-serif;
+  color: var(--murekkep);
+  font-size: 9.5pt;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.sayfa {
+  width: 210mm; height: 297mm;
+  padding: 14mm 15mm 16mm;
+  background: var(--zemin);
+  position: relative; overflow: hidden;
+  page-break-after: always; break-after: page;
+  display: flex; flex-direction: column;
+}
+@media screen { .sayfa { margin: 8mm auto; box-shadow: 0 2px 14px rgba(0,0,0,.12); } }
+.sayfa-no {
+  position: absolute; bottom: 7mm; left: 0; right: 0; text-align: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 10pt; color: var(--soluk); letter-spacing: .1em;
+}
+.sayfa-no::before, .sayfa-no::after { content: '·'; margin: 0 2.5mm; color: var(--altin); }
+
+/* başlıklar */
+.baslik { text-align: center; margin-bottom: 6mm; }
+.ust { font-size: 7.5pt; letter-spacing: .32em; text-transform: uppercase; color: var(--altin); font-weight: 500; }
+.baslik h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 26pt; line-height: 1.15; margin-top: 1mm; }
+.susleme { color: var(--altin); margin-top: 1mm; }
+h3 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 13.5pt;
+  margin: 5mm 0 2.5mm; border-bottom: .3mm solid var(--altin); padding-bottom: 1mm;
+}
+h3 small { font-family: 'Jost', sans-serif; font-weight: 300; font-size: 7.5pt; color: var(--soluk); letter-spacing: 0; }
+.not { font-size: 7.5pt; color: var(--soluk); margin-top: 1.8mm; line-height: 1.45; font-weight: 300; }
+.etiket { font-size: 7pt; letter-spacing: .2em; text-transform: uppercase; color: var(--soluk); margin: 3mm 0 1.5mm; }
+
+/* form alanları */
+.alan { display: flex; align-items: flex-end; gap: 2mm; margin: 2.2mm 0; min-height: 7mm; }
+.alan span { font-size: 7.5pt; letter-spacing: .08em; text-transform: uppercase; color: var(--soluk); white-space: nowrap; }
+.alan i { flex: 1; border-bottom: .25mm solid var(--cizgi); height: 5mm; }
+.sira { display: flex; gap: 6mm; }
+.satirlar div { height: 7.5mm; border-bottom: .25mm solid var(--cizgi); }
+.kutu { display: inline-block; width: 3mm; height: 3mm; border: .25mm solid var(--soluk); border-radius: .5mm; margin-right: 1.3mm; vertical-align: -.3mm; }
+
+/* tablolar */
+.tablo { width: 100%; border-collapse: collapse; }
+.tablo th {
+  font-weight: 500; font-size: 7pt; letter-spacing: .1em; text-transform: uppercase; color: var(--murekkep);
+  text-align: left; padding: 1.6mm 2mm; border-bottom: .4mm solid var(--altin); background: #f7f2ea;
+}
+.tablo td { border-bottom: .25mm solid var(--cizgi); padding: 0 2mm; height: 8.2mm; font-size: 8.5pt; }
+.tablo td + td, .tablo th + th { border-left: .25mm solid #ece6dc; }
+.tablo.kucuk td { height: 5.6mm; font-size: 8pt; }
+.tablo.kucuk tbody tr:nth-child(even) td { background: #fbf8f3; }
+.dizin-tablo td:first-child { color: var(--altin); font-family: 'Cormorant Garamond', serif; font-size: 11pt; text-align: center; }
+.dizin-tablo td { height: 8.1mm; }
+.durum { color: var(--cizgi); letter-spacing: .5em; text-align: center; font-size: 11pt; }
+
+.iki-kolon { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+/* kapak */
+.kapak { background: var(--kapak); color: #f3ead9; padding: 12mm; }
+.kapak-cerceve {
+  flex: 1; border: .5mm solid var(--altin-acik); outline: .25mm solid rgba(212,179,111,.5); outline-offset: -3mm;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.kapak-ust { font-size: 8pt; letter-spacing: .5em; text-transform: uppercase; color: var(--altin-acik); margin-bottom: 18mm; }
+.kapak-elmas { margin-bottom: 14mm; }
+.kapak h1 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 60pt; line-height: .98; letter-spacing: .02em; }
+.kapak-ayrac { color: var(--altin-acik); margin: 9mm 0 4mm; transform: scale(1.6); }
+.kapak-alt { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14pt; color: #d9ccb4; }
+.kapak-isim {
+  margin-top: 30mm; font-family: 'Cormorant Garamond', serif; font-size: 22pt; letter-spacing: .08em; color: #fff;
+  border-top: .3mm solid var(--altin-acik); border-bottom: .3mm solid var(--altin-acik); padding: 3mm 10mm;
+}
+.kapak-yil { margin-top: 4mm; font-size: 8pt; letter-spacing: .4em; color: var(--altin-acik); }
+.arka .kapak-alt { font-size: 16pt; color: #fff; }
+
+/* kimlik */
+.kimlik { display: flex; flex-direction: column; padding: 6mm 12mm 0; }
+.kimlik-elmas { text-align: center; color: var(--altin); margin-bottom: 4mm; }
+.kimlik-isim { font-family: 'Cormorant Garamond', serif; font-size: 30pt; text-align: center; margin: 2mm 0; }
+.alinti { margin-top: 10mm; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13pt; color: var(--soluk); }
+
+/* mohs */
+.sertlik { display: grid; grid-template-columns: 34mm 1fr 7mm; align-items: center; gap: 2mm; height: 5.6mm; font-size: 8pt; }
+.sertlik .bar { height: 1.6mm; background: #f0ebe3; border-radius: 1mm; overflow: hidden; }
+.sertlik .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--altin-acik), var(--altin)); }
+.sertlik b { font-weight: 500; text-align: right; }
+
+/* kesimler */
+.kesim-izgara { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3mm 2mm; color: var(--murekkep); }
+.kesim { display: flex; flex-direction: column; align-items: center; gap: 1mm; font-size: 7.5pt; color: var(--soluk); }
+.gercek-sira { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4mm 5mm; }
+.gercek-sira.hizali { align-items: center; gap: 6mm; margin-top: 4mm; justify-content: center; }
+.gercek { display: flex; flex-direction: column; align-items: center; gap: 1mm; }
+.gercek span { font-size: 6.5pt; color: var(--soluk); }
+.cetvel { display: flex; width: 100mm; height: 6mm; margin: 8mm auto 0; border-top: .2mm solid var(--murekkep); }
+.cetvel i { flex: 0 0 1mm; border-left: .12mm solid var(--murekkep); height: 1.4mm; position: relative; }
+.cetvel i.o { height: 2.2mm; }
+.cetvel i.u { height: 3.2mm; }
+.cetvel i:last-child { flex: 0 0 0; }
+.cetvel b { position: absolute; top: 3.4mm; left: -1mm; font-size: 6pt; font-weight: 400; font-style: normal; }
+
+/* şablonlar */
+.kulak-izgara { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4mm; margin-bottom: 2mm; }
+.kulak-cift {
+  display: flex; justify-content: center; gap: 6mm; padding: 4mm 0 16mm;
+  background-image: radial-gradient(circle, var(--nokta) .28mm, transparent .3mm);
+  background-size: 5mm 5mm; border: .25mm solid var(--cizgi); border-radius: 1.5mm;
+}
+
+/* palet */
+.palet-satir { display: grid; grid-template-columns: 44mm 1fr 42mm; gap: 5mm; align-items: center; padding: 3mm 0; border-bottom: .25mm dashed var(--cizgi); }
+.palet-renkler { display: flex; gap: 2.5mm; justify-content: center; }
+.renk { width: 13mm; height: 13mm; border-radius: 50%; border: .3mm solid var(--cizgi); }
+
+/* ilham */
+.ilham-izgara { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 62mm 52mm 62mm; grid-template-areas: 'a a b' 'c d d' 'e f f'; gap: 4mm; }
+.foto { border: .3mm dashed var(--cizgi); border-radius: 1.5mm; display: flex; align-items: flex-end; padding: 2mm; position: relative; }
+.foto span { font-size: 6.5pt; letter-spacing: .2em; text-transform: uppercase; color: #bfb4a3; }
+.foto::before, .foto::after { content: ''; position: absolute; width: 10mm; height: 4mm; background: rgba(212,179,111,.18); transform: rotate(-30deg); top: -1mm; left: -2mm; }
+.foto::after { left: auto; right: -2mm; transform: rotate(30deg); }
+.b1{grid-area:a}.b2{grid-area:b}.b3{grid-area:c}.b4{grid-area:d}.b5{grid-area:e}.b6{grid-area:f}
+
+/* aletler */
+.alet-liste { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+.alet-liste div { display: flex; align-items: center; height: 7.4mm; border-bottom: .25mm solid var(--cizgi); font-size: 8.5pt; }
+.alet-liste i { flex: 1; }
+
+/* çizim alanları */
+.cizim-alani {
+  position: relative; border: .25mm solid var(--cizgi); border-radius: 1.5mm;
+  background-color: #fff;
+  background-image: radial-gradient(circle, var(--nokta) .28mm, transparent .3mm);
+  background-size: 5mm 5mm; background-position: 2.5mm 2.5mm;
+}
+.cizim-alani .kose {
+  position: absolute; top: 1.5mm; left: 2mm; background: #fff; padding: 0 1.2mm;
+  font-size: 6.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--soluk);
+}
+.cizim-alani.tam { flex: 1; margin-top: 3mm; }
+.cizim-alani.mini { height: 24mm; }
+
+/* tasarım sayfası */
+.tasarim-ust, .ders-ust { display: flex; gap: 5mm; align-items: center; margin-bottom: 3mm; }
+.no-rozet {
+  flex: 0 0 17mm; height: 17mm; border: .4mm solid var(--altin); transform: rotate(45deg); margin: 2mm 3mm 2mm 2mm;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.no-rozet > * { transform: rotate(-45deg); }
+.no-rozet small { font-size: 5.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--altin); position: relative; top: 1.2mm; left: -1.2mm; }
+.no-rozet b { font-family: 'Cormorant Garamond', serif; font-size: 17pt; font-weight: 500; line-height: 1; position: relative; top: -.6mm; left: .6mm;}
+.tasarim-alanlar { flex: 1; }
+.turler { display: flex; flex-wrap: wrap; gap: 1mm 4.5mm; font-size: 8pt; margin-top: 1.5mm; }
+.cizim-alani.buyuk { flex: 1; min-height: 110mm; }
+.gorunumler { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; height: 42mm; margin-top: 3mm; }
+.tasarim-alt { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 3mm; }
+.malz td { height: 5.9mm; }
+.malz tfoot td { font-size: 7pt; letter-spacing: .12em; text-transform: uppercase; color: var(--altin); border-bottom: .4mm solid var(--altin); }
+.teknik .alan { margin: 0; min-height: 7.4mm; }
+.degerlendirme { display: flex; align-items: center; gap: 1.2mm; margin-top: 2mm; font-size: 7.5pt; color: var(--soluk); }
+.degerlendirme > span:first-child { letter-spacing: .08em; text-transform: uppercase; margin-right: 1mm; }
+.degerlendirme > i { font-style: normal; color: var(--altin); font-size: 11pt; }
+.durumlar { margin-left: auto; display: flex; align-items: center; gap: .5mm; }
+.durumlar .kutu { margin-left: 2mm; }
+
+/* ders */
+.ders-govde { flex: 1; display: grid; grid-template-columns: 1fr 52mm; gap: 6mm; }
+.ders-satir div { height: 7.8mm; }
+.ders-govde aside { display: flex; flex-direction: column; gap: 4mm; }
+.kenar-kutu { background: #faf6ef; border-radius: 1.5mm; padding: 3mm; }
+.kenar-kutu b { font-family: 'Cormorant Garamond', serif; font-size: 12pt; font-weight: 600; }
+.kenar-kutu .satirlar div { height: 6.8mm; }
+.kenar-kutu.cizim-alani { flex: 1; background-color: #fff; }
+
+/* serbest */
+.serbest-ust { display: flex; gap: 6mm; }
+
+/* teknik kartı */
+.adimlar { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 6mm; }
+.adim { display: grid; grid-template-columns: 6mm 24mm 1fr; gap: 2mm; align-items: start; }
+.adim > b { font-family: 'Cormorant Garamond', serif; font-size: 16pt; color: var(--altin); font-weight: 500; line-height: 1; }
+.adim .satirlar div { height: 6mm; }
+
+@media print { html, body { background: none; } }
+
+.formuller { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.formuller div { background: #faf6ef; border-radius: 1.5mm; padding: 3mm; font-size: 8pt; line-height: 1.5; }
+.formuller b { display: block; font-family: 'Cormorant Garamond', serif; font-size: 11.5pt; font-weight: 600; color: var(--altin); }
+</style></head>
+<body><section class="sayfa kapak">
+  <div class="kapak-cerceve">
+    <div class="kapak-ust">Kişisel Tasarım Defteri</div>
+    <div class="kapak-elmas">
+<svg viewBox="0 0 120 100" width="150" height="125" fill="none" stroke="#d4b36f" stroke-width="1.1" stroke-linejoin="round">
+  <path d="M30 10 H90 L115 35 L60 95 L5 35 Z"/>
+  <path d="M5 35 H115"/>
+  <path d="M30 10 L45 35 L60 10 L75 35 L90 10"/>
+  <path d="M30 10 L18 35 M90 10 L102 35"/>
+  <path d="M18 35 L60 95 L45 35 M75 35 L60 95 L102 35"/>
+</svg></div>
+    <h1>Takı<br/>Tasarım<br/>Defteri</h1>
+    <div class="kapak-ayrac"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+    <div class="kapak-alt">eskiz · malzeme · teknik · ilham</div>
+    <div class="kapak-isim">Ayşe Yaman Portakal</div>
+    <div class="kapak-yil">2026 – 2027</div>
+  </div></section>
+<section class="sayfa ">
+  <div class="kimlik">
+    <div class="kimlik-elmas">
+<svg viewBox="0 0 120 100" width="70" height="58.333333333333336" fill="none" stroke="#b08d57" stroke-width="0.9" stroke-linejoin="round">
+  <path d="M30 10 H90 L115 35 L60 95 L5 35 Z"/>
+  <path d="M5 35 H115"/>
+  <path d="M30 10 L45 35 L60 10 L75 35 L90 10"/>
+  <path d="M30 10 L18 35 M90 10 L102 35"/>
+  <path d="M18 35 L60 95 L45 35 M75 35 L60 95 L102 35"/>
+</svg></div>
+    <div class="ust" style="text-align:center">Bu defter</div>
+    <div class="kimlik-isim">Ayşe Yaman Portakal</div>
+    <div class="ust" style="text-align:center;margin-bottom:14mm">adına aittir</div>
+    <div class="alan" style=""><span>Telefon</span><i></i></div>
+    <div class="alan" style=""><span>E-posta</span><i></i></div>
+    <div class="alan" style=""><span>Kurs / Atölye</span><i></i></div>
+    <div class="alan" style=""><span>Eğitmen</span><i></i></div>
+    <div class="alan" style=""><span>Ders günleri & saati</span><i></i></div>
+    <div class="alan" style=""><span>Başlangıç tarihi</span><i></i></div>
+    <h3>Bu kursta öğrenmek istediklerim</h3>
+    <div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div>
+    <h3>Hayalimdeki ilk koleksiyon</h3>
+    <div class="satirlar "><div></div><div></div><div></div><div></div></div>
+    <p class="alinti">“Her takı, taşıyanın hikâyesini anlatan küçük bir mimaridir.”</p>
+  </div><div class="sayfa-no">2</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">İçindekiler</div>
+    <h2>Proje Dizini</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <table class="tablo dizin-tablo">
+      <thead><tr><th style="width:9mm">No</th><th>Proje adı</th><th style="width:28mm">Tür</th><th style="width:16mm">Sayfa</th><th style="width:26mm">Eskiz · Yapım · Bitti</th></tr></thead>
+      <tbody><tr><td>1</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>2</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>3</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>4</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>5</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>6</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>7</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>8</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>9</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>10</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>11</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>12</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>13</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>14</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>15</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>16</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>17</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>18</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>19</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>20</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>21</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>22</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>23</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>24</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>25</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr><tr><td>26</td><td></td><td></td><td></td><td class="durum">○ ○ ○</td></tr></tbody>
+    </table><div class="sayfa-no">3</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Başvuru · 1</div>
+    <h2>Ölçüler & Metaller</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <div class="iki-kolon">
+      <div>
+        <h3>Yüzük ölçü tablosu</h3>
+        <table class="tablo kucuk">
+          <thead><tr><th>Türk ölçüsü</th><th>İç çevre (mm)</th><th>İç çap (mm)</th><th>ABD (≈)</th></tr></thead>
+          <tbody><tr><td><b>8</b></td><td>48</td><td>15.3</td><td>4.5</td></tr><tr><td><b>9</b></td><td>49</td><td>15.6</td><td>5</td></tr><tr><td><b>10</b></td><td>50</td><td>15.9</td><td>5.5</td></tr><tr><td><b>11</b></td><td>51</td><td>16.2</td><td>5.5</td></tr><tr><td><b>12</b></td><td>52</td><td>16.6</td><td>6</td></tr><tr><td><b>13</b></td><td>53</td><td>16.9</td><td>6.5</td></tr><tr><td><b>14</b></td><td>54</td><td>17.2</td><td>7</td></tr><tr><td><b>15</b></td><td>55</td><td>17.5</td><td>7.5</td></tr><tr><td><b>16</b></td><td>56</td><td>17.8</td><td>7.5</td></tr><tr><td><b>17</b></td><td>57</td><td>18.1</td><td>8</td></tr><tr><td><b>18</b></td><td>58</td><td>18.5</td><td>8.5</td></tr><tr><td><b>19</b></td><td>59</td><td>18.8</td><td>9</td></tr><tr><td><b>20</b></td><td>60</td><td>19.1</td><td>9</td></tr><tr><td><b>21</b></td><td>61</td><td>19.4</td><td>9.5</td></tr><tr><td><b>22</b></td><td>62</td><td>19.7</td><td>10</td></tr></tbody>
+        </table>
+        <p class="not">Türk ölçüsü ≈ iç çevre (mm) − 40. Geniş bantlı yüzüklerde yarım–bir ölçü büyük seçin.</p>
+      </div>
+      <div>
+        <h3>Metal ayarları & özkütle</h3>
+        <table class="tablo kucuk">
+          <thead><tr><th>Metal</th><th>Milyem</th><th>Saflık</th><th>g/cm³</th></tr></thead>
+          <tbody><tr><td>24 ayar altın</td><td>999</td><td>%99,9</td><td>19,3</td></tr><tr><td>22 ayar altın</td><td>916</td><td>%91,6</td><td>17,8</td></tr><tr><td>18 ayar altın</td><td>750</td><td>%75,0</td><td>15,5</td></tr><tr><td>14 ayar altın</td><td>585</td><td>%58,5</td><td>13,1</td></tr><tr><td>8 ayar altın</td><td>333</td><td>%33,3</td><td>11,2</td></tr><tr><td>Saf gümüş</td><td>999</td><td>%99,9</td><td>10,5</td></tr><tr><td>Gümüş (sterling)</td><td>925</td><td>%92,5</td><td>10,4</td></tr><tr><td>Platin</td><td>950</td><td>%95,0</td><td>21,4</td></tr><tr><td>Bakır</td><td>—</td><td>—</td><td>8,9</td></tr><tr><td>Pirinç</td><td>—</td><td>Cu + Zn</td><td>8,5</td></tr><tr><td>Bronz</td><td>—</td><td>Cu + Sn</td><td>8,8</td></tr></tbody>
+        </table>
+        <p class="not">Tahmini ağırlık (g) = hacim (cm³) × özkütle. Renkli altınlarda özkütle alaşıma göre değişir.</p>
+        <h3>Tel kalınlıkları</h3>
+        <table class="tablo kucuk">
+          <thead><tr><th>AWG (gauge)</th><th>Çap (mm)</th></tr></thead>
+          <tbody><tr><td>14</td><td>1,63</td></tr><tr><td>16</td><td>1,29</td></tr><tr><td>18</td><td>1,02</td></tr><tr><td>20</td><td>0,81</td></tr><tr><td>22</td><td>0,64</td></tr><tr><td>24</td><td>0,51</td></tr><tr><td>26</td><td>0,40</td></tr><tr><td>28</td><td>0,32</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <h3>Hızlı formüller</h3>
+    <div class="formuller">
+      <div><b>Çevre</b> = iç çap × 3,14</div>
+      <div><b>Yüzük teli boyu</b> = (iç çap + tel kalınlığı) × 3,14</div>
+      <div><b>Ağırlık (g)</b> = hacim (cm³) × özkütle</div>
+    </div>
+    <h3>Ölçü notlarım</h3>
+    <div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div><div class="sayfa-no">4</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Başvuru · 2</div>
+    <h2>Uzunluklar & Taşlar</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <h3>Kolye uzunlukları</h3>
+    <svg viewBox="0 0 200 135" width="100%" style="max-height:95mm">
+      <path d="M85 4 C 86 20, 82 28, 70 34 C 50 42, 25 44, 10 56 L 4 130" stroke="#2b3a37" stroke-width=".8" fill="none"/>
+      <path d="M115 4 C 114 20, 118 28, 130 34 C 150 42, 175 44, 190 56 L 196 130" stroke="#2b3a37" stroke-width=".8" fill="none"/>
+      <path d="M72 40 C 76 57, 124 57, 128 40" stroke="#b08d57" stroke-width="0.7" fill="none" stroke-dasharray="2 1.5"/>
+     <circle cx="100" cy="55.5" r="1.6" fill="#b08d57"/><path d="M69 40 C 73 77, 127 77, 131 40" stroke="#b08d57" stroke-width="1.1" fill="none" stroke-dasharray="0"/>
+     <circle cx="100" cy="70.5" r="1.6" fill="#b08d57"/><path d="M66 40 C 70 99, 130 99, 134 40" stroke="#b08d57" stroke-width="0.7" fill="none" stroke-dasharray="2 1.5"/>
+     <circle cx="100" cy="87" r="1.6" fill="#b08d57"/><path d="M63 40 C 67 127, 133 127, 137 40" stroke="#b08d57" stroke-width="0.7" fill="none" stroke-dasharray="0"/>
+     <circle cx="100" cy="108" r="1.6" fill="#b08d57"/><path d="M60 40 C 64 155, 136 155, 140 40" stroke="#b08d57" stroke-width="0.7" fill="none" stroke-dasharray="2 1.5"/>
+     <circle cx="100" cy="129" r="1.6" fill="#b08d57"/><text x="146" y="55.5" font-size="5.2" fill="#2b3a37" font-family="Jost, sans-serif">Gerdanlık</text>
+     <text x="146" y="61.5" font-size="4.6" fill="#8a7f70" font-family="Jost, sans-serif">35 – 40 cm</text>
+     <line x1="104" y1="55.5" x2="143" y2="55.5" stroke="#cfc6b8" stroke-width=".4"/><text x="146" y="70.5" font-size="5.2" fill="#2b3a37" font-family="Jost, sans-serif">Prenses</text>
+     <text x="146" y="76.5" font-size="4.6" fill="#8a7f70" font-family="Jost, sans-serif">42 – 48 cm</text>
+     <line x1="104" y1="70.5" x2="143" y2="70.5" stroke="#cfc6b8" stroke-width=".4"/><text x="146" y="87" font-size="5.2" fill="#2b3a37" font-family="Jost, sans-serif">Matine</text>
+     <text x="146" y="93" font-size="4.6" fill="#8a7f70" font-family="Jost, sans-serif">50 – 60 cm</text>
+     <line x1="104" y1="87" x2="143" y2="87" stroke="#cfc6b8" stroke-width=".4"/><text x="146" y="108" font-size="5.2" fill="#2b3a37" font-family="Jost, sans-serif">Opera</text>
+     <text x="146" y="114" font-size="4.6" fill="#8a7f70" font-family="Jost, sans-serif">70 – 90 cm</text>
+     <line x1="104" y1="108" x2="143" y2="108" stroke="#cfc6b8" stroke-width=".4"/><text x="146" y="129" font-size="5.2" fill="#2b3a37" font-family="Jost, sans-serif">Uzun / rope</text>
+     <text x="146" y="135" font-size="4.6" fill="#8a7f70" font-family="Jost, sans-serif">100 cm +</text>
+     <line x1="104" y1="129" x2="143" y2="129" stroke="#cfc6b8" stroke-width=".4"/>
+    </svg>
+    <div class="iki-kolon">
+      <div>
+        <h3>Bileklik & halhal</h3>
+        <table class="tablo kucuk">
+          <thead><tr><th>Bilek çevresi</th><th>Önerilen uzunluk</th></tr></thead>
+          <tbody>
+            <tr><td>14 – 15 cm</td><td>16 cm</td></tr>
+            <tr><td>15 – 16 cm</td><td>17 – 17,5 cm</td></tr>
+            <tr><td>16 – 17 cm</td><td>18 – 18,5 cm</td></tr>
+            <tr><td>17 – 18 cm</td><td>19 – 19,5 cm</td></tr>
+            <tr><td>Halhal (ayak bileği)</td><td>23 – 27 cm</td></tr>
+            <tr><td>Kelepçe (iç çap)</td><td>5,8 – 6,5 cm</td></tr>
+          </tbody>
+        </table>
+        <p class="not">Kural: bilek çevresi + 1,5 – 2 cm. Kalın boncuklarda pay artırılır.</p>
+      </div>
+      <div>
+        <h3>Taş sertliği (Mohs)</h3>
+        <div class="sertlik"><span>Elmas</span><div class="bar"><i style="width:100%"></i></div><b>10</b></div><div class="sertlik"><span>Yakut · Safir</span><div class="bar"><i style="width:90%"></i></div><b>9</b></div><div class="sertlik"><span>Topaz</span><div class="bar"><i style="width:80%"></i></div><b>8</b></div><div class="sertlik"><span>Zümrüt · Akuamarin</span><div class="bar"><i style="width:75%"></i></div><b>7,5</b></div><div class="sertlik"><span>Ametist · Sitrin · Kuvars</span><div class="bar"><i style="width:70%"></i></div><b>7</b></div><div class="sertlik"><span>Peridot</span><div class="bar"><i style="width:65%"></i></div><b>6,5</b></div><div class="sertlik"><span>Opal · Ay taşı</span><div class="bar"><i style="width:60%"></i></div><b>6</b></div><div class="sertlik"><span>Turkuaz · Lapis</span><div class="bar"><i style="width:55%"></i></div><b>5,5</b></div><div class="sertlik"><span>Mercan</span><div class="bar"><i style="width:35%"></i></div><b>3,5</b></div><div class="sertlik"><span>İnci</span><div class="bar"><i style="width:30%"></i></div><b>3</b></div><div class="sertlik"><span>Kehribar</span><div class="bar"><i style="width:25%"></i></div><b>2,5</b></div>
+        <p class="not">7'nin altındaki taşlar günlük kullanımda çizilebilir; yüzükte korumalı yuva tercih edin.</p>
+      </div>
+    </div><div class="sayfa-no">5</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Başvuru · 3</div>
+    <h2>Taş Kesimleri & Boyutlar</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <h3>Kesim şekilleri</h3>
+    <div class="kesim-izgara"><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><circle cx="20" cy="20" r="16"/><polygon points="20,9 28,12 31,20 28,28 20,31 12,28 9,20 12,12"/></svg><span>Yuvarlak</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><ellipse cx="20" cy="20" rx="12" ry="17"/><ellipse cx="20" cy="20" rx="6.5" ry="10"/></svg><span>Oval</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><path d="M20 3 C27 12 32 20 32 26 A12 12 0 0 1 8 26 C8 20 13 12 20 3 Z"/><path d="M20 12 C24 18 26 22 26 26 A6 6 0 0 1 14 26 C14 22 16 18 20 12 Z"/></svg><span>Armut</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><path d="M20 2 C31 12 31 28 20 38 C9 28 9 12 20 2 Z"/><path d="M20 10 C25 16 25 24 20 30 C15 24 15 16 20 10 Z"/></svg><span>Markiz</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><path d="M20 34 C6 24 3 16 6 10 C9 4 17 4 20 11 C23 4 31 4 34 10 C37 16 34 24 20 34 Z"/><path d="M20 26 C13 21 11 17 13 14 C15 11 18 12 20 16 C22 12 25 11 27 14 C29 17 27 21 20 26 Z"/></svg><span>Kalp</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><rect x="5" y="5" width="30" height="30"/><path d="M5 5 L35 35 M35 5 L5 35"/><rect x="13" y="13" width="14" height="14"/></svg><span>Prenses</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><polygon points="11,3 29,3 34,8 34,32 29,37 11,37 6,32 6,8"/><polygon points="14,9 26,9 28,11 28,29 26,31 14,31 12,29 12,11"/></svg><span>Zümrüt</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><rect x="5" y="5" width="30" height="30" rx="9"/><rect x="12" y="12" width="16" height="16" rx="4"/></svg><span>Yastık</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><rect x="11" y="3" width="18" height="34"/><rect x="15" y="8" width="10" height="24"/></svg><span>Baget</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><path d="M20 4 Q22 4 36 31 Q36 34 33 34 H7 Q4 34 4 31 Q18 4 20 4 Z"/><path d="M20 15 L28 29 H12 Z"/></svg><span>Trilyon</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><ellipse cx="20" cy="24" rx="16" ry="6"/><path d="M4 24 C4 10 36 10 36 24"/></svg><span>Kabaşon</span></div><div class="kesim"><svg viewBox="0 0 40 40" width="17mm" height="17mm" fill="none" stroke="currentColor" stroke-width=".9"><polygon points="12,5 28,5 35,12 35,28 28,35 12,35 5,28 5,12"/><polygon points="16,12 24,12 28,16 28,24 24,28 16,28 12,24 12,16"/></svg><span>Asscher</span></div></div>
+    <h3>Gerçek boyut şablonları <small>(mm — %100 ölçekte yazdırın)</small></h3>
+    <div class="etiket">Yuvarlak</div><div class="gercek-sira"><div class="gercek"><svg width="2mm" height="2mm" viewBox="0 0 2 2"><circle cx="1" cy="1" r="0.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>2</span></div><div class="gercek"><svg width="3mm" height="3mm" viewBox="0 0 3 3"><circle cx="1.5" cy="1.5" r="1.4" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>3</span></div><div class="gercek"><svg width="4mm" height="4mm" viewBox="0 0 4 4"><circle cx="2" cy="2" r="1.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>4</span></div><div class="gercek"><svg width="5mm" height="5mm" viewBox="0 0 5 5"><circle cx="2.5" cy="2.5" r="2.4" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>5</span></div><div class="gercek"><svg width="6mm" height="6mm" viewBox="0 0 6 6"><circle cx="3" cy="3" r="2.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>6</span></div><div class="gercek"><svg width="7mm" height="7mm" viewBox="0 0 7 7"><circle cx="3.5" cy="3.5" r="3.4" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>7</span></div><div class="gercek"><svg width="8mm" height="8mm" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>8</span></div><div class="gercek"><svg width="10mm" height="10mm" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>10</span></div><div class="gercek"><svg width="12mm" height="12mm" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>12</span></div><div class="gercek"><svg width="14mm" height="14mm" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>14</span></div><div class="gercek"><svg width="16mm" height="16mm" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>16</span></div></div>
+    <div class="etiket">Oval</div><div class="gercek-sira"><div class="gercek"><svg width="4mm" height="6mm" viewBox="0 0 4 6"><ellipse cx="2" cy="3" rx="1.9" ry="2.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>6×4</span></div><div class="gercek"><svg width="5mm" height="7mm" viewBox="0 0 5 7"><ellipse cx="2.5" cy="3.5" rx="2.4" ry="3.4" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>7×5</span></div><div class="gercek"><svg width="6mm" height="8mm" viewBox="0 0 6 8"><ellipse cx="3" cy="4" rx="2.9" ry="3.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>8×6</span></div><div class="gercek"><svg width="8mm" height="10mm" viewBox="0 0 8 10"><ellipse cx="4" cy="5" rx="3.9" ry="4.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>10×8</span></div><div class="gercek"><svg width="10mm" height="12mm" viewBox="0 0 10 12"><ellipse cx="5" cy="6" rx="4.9" ry="5.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>12×10</span></div><div class="gercek"><svg width="10mm" height="14mm" viewBox="0 0 10 14"><ellipse cx="5" cy="7" rx="4.9" ry="6.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>14×10</span></div><div class="gercek"><svg width="12mm" height="16mm" viewBox="0 0 12 16"><ellipse cx="6" cy="8" rx="5.9" ry="7.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>16×12</span></div><div class="gercek"><svg width="13mm" height="18mm" viewBox="0 0 13 18"><ellipse cx="6.5" cy="9" rx="6.4" ry="8.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>18×13</span></div><div class="gercek"><svg width="15mm" height="20mm" viewBox="0 0 15 20"><ellipse cx="7.5" cy="10" rx="7.4" ry="9.9" fill="none" stroke="#2b3a37" stroke-width=".15"/></svg><span>20×15</span></div></div>
+    <div class="etiket">Kare / prenses</div><div class="gercek-sira"><div class="gercek"><svg width="4mm" height="4mm" viewBox="0 0 4 4"><rect x=".1" y=".1" width="3.8" height="3.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>4</span></div><div class="gercek"><svg width="5mm" height="5mm" viewBox="0 0 5 5"><rect x=".1" y=".1" width="4.8" height="4.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>5</span></div><div class="gercek"><svg width="6mm" height="6mm" viewBox="0 0 6 6"><rect x=".1" y=".1" width="5.8" height="5.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>6</span></div><div class="gercek"><svg width="8mm" height="8mm" viewBox="0 0 8 8"><rect x=".1" y=".1" width="7.8" height="7.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>8</span></div><div class="gercek"><svg width="10mm" height="10mm" viewBox="0 0 10 10"><rect x=".1" y=".1" width="9.8" height="9.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>10</span></div><div class="gercek"><svg width="12mm" height="12mm" viewBox="0 0 12 12"><rect x=".1" y=".1" width="11.8" height="11.8" fill="none" stroke="#2b3a37" stroke-width=".22"/></svg><span>12</span></div></div>
+    <div class="cetvel"><i class="u"><b>0</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>1</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>2</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>3</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>4</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>5</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>6</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>7</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>8</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>9</b></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="o"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="u"><b>10</b></i></div>
+    <p class="not" style="text-align:center">Kontrol cetveli: 10 cm. Ölçü tutmuyorsa yazıcıda “gerçek boyut” seçeneğini işaretleyin.</p><div class="sayfa-no">6</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Şablon</div>
+    <h2>Küpe & Yüzük Şablonları</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <h3>Küpe çizim şablonu <small>— küpeyi kulak memesindeki noktadan başlayarak çizin</small></h3>
+    <div class="kulak-izgara"><div class="kulak-cift">
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" style="transform:scaleX(-1)">
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg>
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" >
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg></div><div class="kulak-cift">
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" style="transform:scaleX(-1)">
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg>
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" >
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg></div><div class="kulak-cift">
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" style="transform:scaleX(-1)">
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg>
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" >
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg></div><div class="kulak-cift">
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" style="transform:scaleX(-1)">
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg>
+<svg viewBox="0 0 44 64" width="30mm" height="44mm" fill="none" stroke="#a89a86" stroke-width=".6" >
+  <path d="M22 3 C36 3 42 14 41 27 C40 37 33 41 31 48 C29 55 24 60 18 59 C12 58 11 52 14 47 C11 41 7 33 5.5 23 C4 11 10 3 22 3 Z"/>
+  <path d="M15 12 C22 7 33 11 33 22 C33 30 27 32 24 37 C22 40 20 39 19 36"/>
+  <path d="M19 20 C22 17 27 19 26 24"/>
+  <circle cx="19.5" cy="53" r=".9" fill="#b08d57" stroke="none"/>
+</svg></div></div>
+    <h3>Gerçek boyut yüzük daireleri <small>(Türk ölçüsü · iç çap mm)</small></h3>
+    <p class="not">Mevcut bir yüzüğü dairenin üzerine koyun; iç kenarı çizgiyle örtüşen daire yüzük ölçünüzdür.</p>
+    <div class="gercek-sira hizali"><div class="gercek"><svg width="16.278874536821952mm" height="16.278874536821952mm" viewBox="0 0 16.278874536821952 16.278874536821952"><circle cx="8.139437268410976" cy="8.139437268410976" r="7.639437268410976" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="8.139437268410976" cy="8.139437268410976" r=".3" fill="#b08d57"/></svg><span>8 · 15.3</span></div><div class="gercek"><svg width="16.915494309189533mm" height="16.915494309189533mm" viewBox="0 0 16.915494309189533 16.915494309189533"><circle cx="8.457747154594767" cy="8.457747154594767" r="7.957747154594767" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="8.457747154594767" cy="8.457747154594767" r=".3" fill="#b08d57"/></svg><span>10 · 15.9</span></div><div class="gercek"><svg width="17.552114081557114mm" height="17.552114081557114mm" viewBox="0 0 17.552114081557114 17.552114081557114"><circle cx="8.776057040778557" cy="8.776057040778557" r="8.276057040778557" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="8.776057040778557" cy="8.776057040778557" r=".3" fill="#b08d57"/></svg><span>12 · 16.6</span></div><div class="gercek"><svg width="18.188733853924695mm" height="18.188733853924695mm" viewBox="0 0 18.188733853924695 18.188733853924695"><circle cx="9.094366926962348" cy="9.094366926962348" r="8.594366926962348" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="9.094366926962348" cy="9.094366926962348" r=".3" fill="#b08d57"/></svg><span>14 · 17.2</span></div><div class="gercek"><svg width="18.82535362629228mm" height="18.82535362629228mm" viewBox="0 0 18.82535362629228 18.82535362629228"><circle cx="9.41267681314614" cy="9.41267681314614" r="8.91267681314614" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="9.41267681314614" cy="9.41267681314614" r=".3" fill="#b08d57"/></svg><span>16 · 17.8</span></div><div class="gercek"><svg width="19.46197339865986mm" height="19.46197339865986mm" viewBox="0 0 19.46197339865986 19.46197339865986"><circle cx="9.73098669932993" cy="9.73098669932993" r="9.23098669932993" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="9.73098669932993" cy="9.73098669932993" r=".3" fill="#b08d57"/></svg><span>18 · 18.5</span></div><div class="gercek"><svg width="20.098593171027442mm" height="20.098593171027442mm" viewBox="0 0 20.098593171027442 20.098593171027442"><circle cx="10.049296585513721" cy="10.049296585513721" r="9.549296585513721" fill="none" stroke="#2b3a37" stroke-width=".18"/><circle cx="10.049296585513721" cy="10.049296585513721" r=".3" fill="#b08d57"/></svg><span>20 · 19.1</span></div></div><div class="sayfa-no">7</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Renk Çalışması</div>
+    <h2>Renk & Taş Paleti</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <p class="not">Daireleri boya kalemi ya da suluboyayla doldurun; ilham aldığınız kaynağı ve uyumlu metali not edin.</p>
+    
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <div class="palet-satir">
+      <div class="palet-ad"><div class="alan" style=""><span>Kombinasyon</span><i></i></div></div>
+      <div class="palet-renkler"><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div><div class="renk"></div></div>
+      <div class="palet-not"><div class="alan" style=""><span>Metal / taş</span><i></i></div></div>
+    </div>
+    <h3>Renk uyumu notlarım</h3>
+    <div class="satirlar "><div></div><div></div><div></div><div></div></div><div class="sayfa-no">8</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Moodboard</div>
+    <h2>İlham Panosu</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+  <div class="ilham-izgara">
+    <div class="foto b1"><span>fotoğraf / kesik</span></div>
+    <div class="foto b2"><span>doku</span></div>
+    <div class="foto b3"><span>renk</span></div>
+    <div class="foto b4"><span>form</span></div>
+    <div class="foto b5"><span>doğa</span></div>
+    <div class="foto b6"><span>mimari</span></div>
+  </div>
+  <div class="iki-kolon" style="margin-top:6mm">
+    <div><div class="alan" style=""><span>Tema</span><i></i></div><div class="alan" style=""><span>Anahtar kelimeler</span><i></i></div><div class="alan" style=""><span>Hedef kişi / kullanım</span><i></i></div></div>
+    <div><div class="alan" style=""><span>Kaynaklar</span><i></i></div><div class="alan" style=""><span>Hissettirdiği duygu</span><i></i></div><div class="alan" style=""><span>Koleksiyon adı</span><i></i></div></div>
+  </div><div class="sayfa-no">9</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Atölye</div>
+    <h2>Malzeme Envanteri</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <table class="tablo">
+      <thead><tr><th>Malzeme / taş</th><th style="width:22mm">Renk</th><th style="width:20mm">Ölçü</th><th style="width:16mm">Adet</th><th style="width:20mm">Fiyat</th><th style="width:30mm">Nereden</th></tr></thead>
+      <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody>
+    </table><div class="sayfa-no">10</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Atölye</div>
+    <h2>Tedarikçiler & Aletler</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+    <h3>Tedarikçiler</h3>
+    <table class="tablo">
+      <thead><tr><th>Firma / dükkân</th><th>Ürünler</th><th style="width:34mm">İletişim</th><th style="width:22mm">Not</th></tr></thead>
+      <tbody><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr></tbody>
+    </table>
+    <h3>Alet kontrol listesi</h3>
+    <div class="alet-liste"><div><span class="kutu"></span>Yassı pense</div><div><span class="kutu"></span>Yuvarlak pense</div><div><span class="kutu"></span>Kesme pensesi</div><div><span class="kutu"></span>Kıl testere</div><div><span class="kutu"></span>Eğe seti</div><div><span class="kutu"></span>Yüzük mastarı</div><div><span class="kutu"></span>Yüzük ölçü çubuğu (mandrel)</div><div><span class="kutu"></span>Kumpas</div><div><span class="kutu"></span>Hassas terazi</div><div><span class="kutu"></span>Lehim makinesi / şalümo</div><div><span class="kutu"></span>Zımpara & polisaj</div><div><span class="kutu"></span>Tokmak / çekiç</div><div><span class="kutu"></span>Matkap uçları</div><div><span class="kutu"></span>Cımbız</div><div><span class="kutu"></span>Büyüteç / lup</div><div><span class="kutu"></span>Boncuk ipi & iğne</div><div><span class="kutu"></span><i></i></div><div><span class="kutu"></span><i></i></div><div><span class="kutu"></span><i></i></div><div><span class="kutu"></span><i></i></div></div><div class="sayfa-no">11</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>01</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">12</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>01</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">13</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>02</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">14</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>03</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">15</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>04</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">16</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Teknik Kartı</div>
+    <h2>Yeni Bir Teknik</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+  <div class="iki-kolon">
+    <div><div class="alan" style=""><span>Tekniğin adı</span><i></i></div><div class="alan" style=""><span>Zorluk  ○ ○ ○ ○ ○</span><i></i></div><div class="alan" style=""><span>Gerekli aletler</span><i></i></div><div class="alan" style=""><span>Malzemeler</span><i></i></div></div>
+    <div class="cizim-alani" style="height:42mm"><span class="kose">Örnek / sonuç çizimi</span></div>
+  </div>
+  <h3>Adım adım</h3>
+  <div class="adimlar"><div class="adim"><b>1</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>2</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>3</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>4</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>5</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>6</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>7</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>8</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div></div>
+  <div class="iki-kolon">
+    <div><h3>Dikkat edilecekler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+    <div><h3>Hatalarım & çözümler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+  </div><div class="sayfa-no">17</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>02</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">18</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>05</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">19</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>06</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">20</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>07</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">21</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>08</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">22</div></section>
+<section class="sayfa serbest">
+  <div class="serbest-ust"><div class="alan" style="flex:2.2"><span>Serbest çizim</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+  <div class="cizim-alani tam"></div><div class="sayfa-no">23</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>03</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">24</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>09</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">25</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>10</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">26</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>11</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">27</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>12</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">28</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Teknik Kartı</div>
+    <h2>Yeni Bir Teknik</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+  <div class="iki-kolon">
+    <div><div class="alan" style=""><span>Tekniğin adı</span><i></i></div><div class="alan" style=""><span>Zorluk  ○ ○ ○ ○ ○</span><i></i></div><div class="alan" style=""><span>Gerekli aletler</span><i></i></div><div class="alan" style=""><span>Malzemeler</span><i></i></div></div>
+    <div class="cizim-alani" style="height:42mm"><span class="kose">Örnek / sonuç çizimi</span></div>
+  </div>
+  <h3>Adım adım</h3>
+  <div class="adimlar"><div class="adim"><b>1</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>2</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>3</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>4</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>5</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>6</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>7</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>8</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div></div>
+  <div class="iki-kolon">
+    <div><h3>Dikkat edilecekler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+    <div><h3>Hatalarım & çözümler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+  </div><div class="sayfa-no">29</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>04</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">30</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>13</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">31</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>14</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">32</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>15</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">33</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>16</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">34</div></section>
+<section class="sayfa serbest">
+  <div class="serbest-ust"><div class="alan" style="flex:2.2"><span>Serbest çizim</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+  <div class="cizim-alani tam"></div><div class="sayfa-no">35</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>05</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">36</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>17</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">37</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>18</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">38</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>19</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">39</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>20</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">40</div></section>
+<section class="sayfa ">
+  <header class="baslik">
+    <div class="ust">Teknik Kartı</div>
+    <h2>Yeni Bir Teknik</h2>
+    <div class="susleme"><svg viewBox="0 0 60 12" width="60" height="12" fill="none" stroke="currentColor" stroke-width=".8">
+  <path d="M0 6 H22 M38 6 H60"/><path d="M26 2 H34 L37 5 L30 11 L23 5 Z M23 5 H37"/></svg></div>
+  </header>
+  <div class="iki-kolon">
+    <div><div class="alan" style=""><span>Tekniğin adı</span><i></i></div><div class="alan" style=""><span>Zorluk  ○ ○ ○ ○ ○</span><i></i></div><div class="alan" style=""><span>Gerekli aletler</span><i></i></div><div class="alan" style=""><span>Malzemeler</span><i></i></div></div>
+    <div class="cizim-alani" style="height:42mm"><span class="kose">Örnek / sonuç çizimi</span></div>
+  </div>
+  <h3>Adım adım</h3>
+  <div class="adimlar"><div class="adim"><b>1</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>2</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>3</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>4</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>5</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>6</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>7</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div><div class="adim"><b>8</b><div class="cizim-alani mini"></div><div><div class="satirlar "><div></div><div></div><div></div><div></div></div></div></div></div>
+  <div class="iki-kolon">
+    <div><h3>Dikkat edilecekler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+    <div><h3>Hatalarım & çözümler</h3><div class="satirlar "><div></div><div></div><div></div></div></div>
+  </div><div class="sayfa-no">41</div></section>
+<section class="sayfa ders">
+    <div class="ders-ust">
+      <div class="no-rozet"><small>Ders</small><b>06</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Konu</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Kullanılan aletler</span><i></i></div></div>
+      </div>
+    </div>
+    <div class="ders-govde">
+      <div><div class="satirlar ders-satir"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+      <aside>
+        <div class="kenar-kutu"><b>Önemli ipuçları</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu"><b>Ödev / pratik</b><div class="satirlar "><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="kenar-kutu cizim-alani kucuk-izgara"><span class="kose">Hızlı çizim</span></div>
+      </aside>
+    </div><div class="sayfa-no">42</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>21</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">43</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>22</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">44</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>23</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">45</div></section>
+<section class="sayfa tasarim">
+    <div class="tasarim-ust">
+      <div class="no-rozet"><small>Tasarım</small><b>24</b></div>
+      <div class="tasarim-alanlar">
+        <div class="sira"><div class="alan" style="flex:2.2"><span>Proje adı</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+        <div class="turler"><span><i class="kutu"></i>Yüzük</span><span><i class="kutu"></i>Kolye</span><span><i class="kutu"></i>Küpe</span><span><i class="kutu"></i>Bileklik</span><span><i class="kutu"></i>Broş</span><span><i class="kutu"></i>Set</span><span><i class="kutu"></i>Diğer</span></div>
+      </div>
+    </div>
+    <div class="cizim-alani buyuk"><span class="kose">Ana eskiz</span></div>
+    <div class="gorunumler">
+      <div class="cizim-alani"><span class="kose">Ön görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Yan görünüm</span></div>
+      <div class="cizim-alani"><span class="kose">Üst / detay</span></div>
+    </div>
+    <div class="tasarim-alt">
+      <div>
+        <table class="tablo kucuk malz">
+          <thead><tr><th>Malzeme</th><th style="width:14mm">Miktar</th><th style="width:16mm">Maliyet</th></tr></thead>
+          <tbody><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody>
+          <tfoot><tr><td>Toplam</td><td></td><td></td></tr></tfoot>
+        </table>
+      </div>
+      <div class="teknik">
+        <div class="alan" style=""><span>Metal / ayar</span><i></i></div><div class="alan" style=""><span>Taş / boncuk</span><i></i></div><div class="alan" style=""><span>Teknik</span><i></i></div><div class="alan" style=""><span>Ölçüler</span><i></i></div>
+        <div class="sira"><div class="alan" style="flex:1"><span>Ağırlık</span><i></i></div><div class="alan" style="flex:1"><span>Süre</span><i></i></div></div>
+        <div class="degerlendirme"><span>Sonuç</span><i>☆</i><i>☆</i><i>☆</i><i>☆</i><i>☆</i><span class="durumlar"><i class="kutu"></i>Eskiz <i class="kutu"></i>Yapımda <i class="kutu"></i>Bitti</span></div>
+      </div>
+    </div><div class="sayfa-no">46</div></section>
+<section class="sayfa serbest">
+  <div class="serbest-ust"><div class="alan" style="flex:2.2"><span>Serbest çizim</span><i></i></div><div class="alan" style="flex:1"><span>Tarih</span><i></i></div></div>
+  <div class="cizim-alani tam"></div><div class="sayfa-no">47</div></section>
+<section class="sayfa kapak">
+  <div class="kapak-cerceve arka">
+    <div class="kapak-elmas">
+<svg viewBox="0 0 120 100" width="60" height="50" fill="none" stroke="#d4b36f" stroke-width="1" stroke-linejoin="round">
+  <path d="M30 10 H90 L115 35 L60 95 L5 35 Z"/>
+  <path d="M5 35 H115"/>
+  <path d="M30 10 L45 35 L60 10 L75 35 L90 10"/>
+  <path d="M30 10 L18 35 M90 10 L102 35"/>
+  <path d="M18 35 L60 95 L45 35 M75 35 L60 95 L102 35"/>
+</svg></div>
+    <div class="kapak-alt" style="margin-top:6mm">Ayşe Yaman Portakal</div>
+    <div class="kapak-yil">Takı Tasarım Defteri</div>
+  </div></section></body></html>
