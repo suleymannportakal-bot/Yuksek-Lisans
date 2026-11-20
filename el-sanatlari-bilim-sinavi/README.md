@@ -29,3 +29,11 @@ Bu klasör, yüksek lisans bilim sınavına hazırlık için konu notları, test
 - Bölümdeki öğretim üyelerinin çalışma alanlarına (yayınlarına) bakmak, hangi konulara ağırlık verileceği konusunda ipucu verir.
 
 > Not: Bu materyal genel sanat tarihi ve el sanatları literatürüne (Aslanapa, Yetkin, Ögel, Arık, Balpınar, Atasoy vb.) dayanarak hazırlanmış bir çalışma özetidir. Bazı tarihler kaynaklarda birkaç yıl farkla verilebilir; sınavda en yaygın kabul gören tarih yazılmıştır.
+
+## Yazdırılabilir Dosyalar (`cikti/` klasörü)
+
+| Dosya | Açıklama |
+|---|---|
+| `El_Sanatlari_Bilim_Sinavi_Hazirlik.pdf` | Tüm set tek dosyada (kapak sayfalı, A4, sayfa numaralı) |
+| `1_Calisma_Notlari.pdf` … `4_Son_Gun_Tekrar.pdf` | Bölümler ayrı ayrı (yalnızca istenen kısmı yazdırmak için) |
+| `El_Sanatlari_Bilim_Sinavi_Hazirlik.docx` | Word dosyası – üzerinde düzenleme / not ekleme yapmak için |
